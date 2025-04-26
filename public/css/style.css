@@ -1,0 +1,161 @@
+ body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+} 
+.container{
+   flex: 1;
+}
+.navbar{
+    height: 5rem;
+    background-color: white !important;
+ }
+.fa-compass{
+    color: #fe424d;
+    font-size: 2rem ;
+ }
+ .nav-link {
+  color :#222222 !important;
+ }
+ .f-info-links a {
+text-decoration: none;
+color: #222222;
+ }
+
+ .f-info-links a:hover {
+    text-decoration: underline;
+
+
+ }
+ .f-info-links,
+ .f-info-socials,.f-info-brand{
+    display: flex;
+    width:100%;
+   align-items: center;
+   justify-content: center;
+   
+ }
+ .f-info-socials i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    justify-content: center;
+ }
+ .f-info{
+    text-align: center;
+    display: flex;
+    height: 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+
+ }
+ /* cards */
+ .listing-card{
+    border:none !important;
+    margin-bottom: 2rem;
+ }
+ .card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+ }
+ .card-body{
+    padding: 0!important;
+ }
+ .card-text p {
+    font-weight: 400 !important;
+ }
+ .listing-links{
+    text-decoration: none;
+    color:black;
+    
+ }
+ /* card effects */
+ .card-img-overlay{
+    opacity:0;
+ }
+ .card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+ }
+ .add-btn{
+   background-color:  #fe424d !important;
+   border: none !important;
+ }
+ /* edit page */
+ .edit-btn{
+   background-color:  #fe424d !important;
+   border: none !important;
+ }
+ /* show page */
+ .show-page{
+height: 30vh;
+
+ }
+ .btns{
+   display: flex;
+ }
+ .show-card{
+   padding-left: 0;
+   padding-right: 0;
+ }
+ .preview-image img {
+   width: 200px;
+   height: 200px;
+   object-fit: cover;
+   border-radius: 8px;
+   border: 1px solid #ccc;
+ }
+ /* .btn-search{
+   background-color: #fe424d;
+   color:#fff ;
+   border-radius: 25px;
+   padding: 0 1rem 0 1rem;
+ }
+ .btn-search:hover{
+   background-color: #fe424d;
+   color:#fff ;
+ }
+ .btn-search i {
+   display: inline;
+   margin-right: 0.5rem;
+ }
+ .search-inp{
+   border-radius: 25px;
+   padding: 0.5rem 3rem 0.5rem 3rem;
+   font-size: 1rem;
+ }
+  */
+  /* style.css inside public/ */
+
+  .btn-search {
+   background-color: #fe424d;
+   color: #fff;
+   border-radius: 25px;
+   padding: 0 1rem 0 1rem;
+   display: flex;
+   /* flex-wrap: nowrap; */
+   align-items: center;
+ }
+ 
+ .btn-search:hover {
+   background-color: #fe424d;
+   color: #fff;
+ }
+ 
+ .btn-search i{
+   display: inline;
+   margin-right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+ }
+ 
+ .search-inp {
+   border-radius: 25px;
+   padding: 0.5rem 3rem 0.5rem 3rem;
+   font-size: 1rem;
+ }
+ 
