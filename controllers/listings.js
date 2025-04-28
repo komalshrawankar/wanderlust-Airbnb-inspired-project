@@ -3,17 +3,26 @@ const ExpressError = require("../utils/ExpressError");
 
 const Listing = require("../models/listing");
 module.exports.index = async (req, res) => {
-    let { search } = req.query;
-    let listings;
-    
-    if (search) {
-        listings = await Listing.find({ title: { $regex: search, $options: 'i' } });
-    } else {
-        listings = await Listing.find({});
-    }
+    try {
+        let { search } = req.query;
+        let listings;
 
-    res.render("listings/index", {allListings :  listings });
+        if (search) {
+            listings = await Listing.find({ title: { $regex: search, $options: 'i' } });
+        } else {
+            listings = await Listing.find({});
+        }
+
+        console.log("Fetched Listings:", listings.length);  // Small log for debugging
+
+        res.render("listings/index", { allListings: listings });
+    } catch (err) {
+        console.error("Error fetching listings:", err);
+        req.flash("error", "Unable to load listings at the moment.");
+        res.redirect("/");
+    }
 };
+
 module.exports.renderNewForm = (req,res)=>{
     
     res.render("listings/new.ejs");
@@ -35,7 +44,7 @@ module.exports.showListings = async(req,res)=>{
 };
 
 module.exports.createListing = async (req, res, next) => {
-    console.log("🛠️ Received POST /listings");
+    console.log(" Received POST /listings");
     console.log(" req.body: ", req.body);
     console.log(" req.file: ", req.file);
 
@@ -54,7 +63,7 @@ module.exports.createListing = async (req, res, next) => {
     }
 
     await newListing.save();
-    console.log("✅ Listing saved");
+    console.log(" Listing saved");
 
     req.flash("success", "New Listing Created!");
     res.redirect("/listings");

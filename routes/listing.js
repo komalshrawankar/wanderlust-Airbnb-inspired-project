@@ -30,7 +30,7 @@ router.post(
 );
 //serch bar
 //  Correct one
-router.get("/", wrapAsync(listingController.index));
+//router.get("/", wrapAsync(listingController.index));
 
 //edit route
 router.get("/:id/edit",isLoggedIn,isOwner,wrapAsync(listingController.renderEditForm));

@@ -64,7 +64,7 @@
           <div>camping</div>
       </div>
       <div class="filter">
-        <div><i class="fa-solid fa-tractor"></i>></div> 
+        <div><i class="fa-solid fa-tractor"></i></div> 
          <div>farms</div>
      </div>
      <div class="filter">
@@ -93,29 +93,31 @@
      
      <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
 
-            <% for (let listing of allListings) { %>
-                <a href="/listings/<%= listing._id %>" class="listing-links">
-                    <div class="card col listing-card">
-
-                        <img src="<%= typeof listing.image === 'object' && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1743653537429-a94889a6fd47?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D' %>"  class="card-img-top" alt="listing_image"
-                            style="height: 20rem"/>
-
-                        <div class="card-img-overlay"></div>
-                    
-
-                    <div class="card-body">
-                        <p class="card-text">
-                            <b>
-                                <%= listing.title %>
-                            </b> <br />
-
-                            &#8377;<%= listing.price.toLocaleString("en-IN") %>/night
-                            <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
-                        </p>
-                    </div>
-        </div>
-        </a>
-        <% }%>
+        <% if (allListings && allListings.length > 0) { %>
+            <!-- <div class="row"> -->
+                <% for (let listing of allListings) { %>
+                    <a href="/listings/<%= listing._id %>" class="listing-links">
+                        <div class="card col listing-card">
+                            <img src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1743653537429-a94889a6fd47?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDN8Ym84alFLVGFFMFl8fGVufDB8fHx8fA%3D%3D' %>"
+                                class="card-img-top" alt="listing_image"
+                                style="height: 20rem; object-fit: cover;"/>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <b><%= listing.title || "No title" %></b> <br/>
+                                    ₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %>/night
+                                    <i class="tax-info">&nbsp;&nbsp;+18% GST</i>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                <% } %>
+            <!-- </div> -->
+        <% } else { %>
+            <div class="alert alert-warning text-center" role="alert">
+                <h3>No listings found!</h3>
+            </div>
+        <% } %>
+        
 
 
             </div>
