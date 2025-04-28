@@ -20,6 +20,7 @@ const LocalStratergy = require("passport-local");
 const User = require("./models/user.js");
 
 //console.log(process.env.SECRET);
+const dbUrl = process.env.ATLASDB_URL;
 
 main()
   .then(() => {
@@ -29,7 +30,7 @@ main()
     console.log(err);
   });
 async function main() {
-  await mongoose.connect(MONGO_URL);
+  await mongoose.connect(dbUrl);
 }
 
 app.set("view engine", "ejs");
@@ -38,11 +39,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverrride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
+
+const store = MongoStore.create({
+  mongoUrl:dbUrl,
+  crypto:{
+    secret:"KOMALSHRAWANKAR",
+  },
+  touchAfter:24*3600,
+});
+
+store.on("error",()=>{
+  console.log("ERROR IN MONGO SESSION STORE",err);
+});
+
 const sessionOptions = {
+  store,
   secret:process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  store: MongoStore.create({ mongoUrl: MONGO_URL }), 
+  
   cookie:{
     expires: Date.now() + 7*24*60*60*1000,
     maxAge: 7*24*60*60*1000,
