@@ -13,6 +13,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStratergy = require("passport-local");
@@ -41,6 +42,7 @@ const sessionOptions = {
   secret:process.env.SECRET,
   resave: false,
   saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: MONGO_URL }), 
   cookie:{
     expires: Date.now() + 7*24*60*60*1000,
     maxAge: 7*24*60*60*1000,
